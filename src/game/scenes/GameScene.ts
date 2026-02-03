@@ -22,11 +22,14 @@ export default class GameScene extends Phaser.Scene {
 
         this.player = new Player(this, width / 2, height / 2);
         this.inputHandler = new KeyboardInput(this);
+
+        // Camera setup
+        this.cameras.main.setBounds(0, 0, width, height);
+        this.cameras.main.startFollow(this.player);
     }
 
     update(_time: number, delta: number): void {
         const direction = this.inputHandler.getDirection();
         this.player.update(delta, direction);
-        // Input will be passed to Player in Phase 2.3
     }
 }
