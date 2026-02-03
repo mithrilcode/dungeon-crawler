@@ -1,6 +1,10 @@
 import Phaser from 'phaser';
 
-export class GameScene extends Phaser.Scene {
+import Player from '../entities/Player';
+
+export default class GameScene extends Phaser.Scene {
+    private player!: Player;
+
     constructor() {
         super('GameScene');
     }
@@ -11,7 +15,13 @@ export class GameScene extends Phaser.Scene {
 
     create(): void {
         console.log('GameScene create');
+
+        const { width, height } = this.scale;
+
+        this.player = new Player(this, width / 2, height / 2);
     }
 
-    update(): void {}
+    update(_time: number, delta: number): void {
+        this.player.update(delta);
+    }
 }
