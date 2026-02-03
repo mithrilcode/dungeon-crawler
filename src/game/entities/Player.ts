@@ -11,7 +11,14 @@ export default class Player extends Phaser.GameObjects.Rectangle {
         scene.add.existing(this);
     }
 
-    update(_delta: number): void {
-        // Movement will be added in Phase 2.3
+    update(_delta: number, direction: Phaser.Math.Vector2): void {
+        if (direction.lengthSq() === 0) {
+            return;
+        }
+
+        const distance = (this.speed * delta) / 1000;
+
+        this.x += direction.x * distance;
+        this.y += direction.y * distance;
     }
 }

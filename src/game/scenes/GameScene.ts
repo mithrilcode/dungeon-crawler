@@ -25,7 +25,8 @@ export default class GameScene extends Phaser.Scene {
     }
 
     update(_time: number, delta: number): void {
-        this.player.update(delta);
+        const direction = this.inputHandler.getDirection();
+        this.player.update(delta, direction);
         // Input will be passed to Player in Phase 2.3
     }
 }
